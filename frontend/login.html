@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | HouseLedger</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fc;
+            color: #26385f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-page {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            border: 1px solid #dce4f1;
+            border-radius: 18px;
+            padding: 40px;
+            box-shadow: 0 18px 50px rgba(35, 55, 95, 0.10);
+        }
+
+        .login-brand {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .login-logo {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 16px;
+            border-radius: 15px;
+            background: #4169df;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(65, 105, 223, 0.22);
+        }
+
+        .login-brand h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+            color: #26385f;
+        }
+
+        .login-brand p {
+            margin: 7px 0 0;
+            font-size: 13px;
+            color: #7082a6;
+        }
+
+        .login-heading {
+            margin-bottom: 24px;
+        }
+
+        .login-heading h2 {
+            margin: 0 0 7px;
+            font-size: 20px;
+            color: #26385f;
+        }
+
+        .login-heading p {
+            margin: 0;
+            font-size: 13px;
+            color: #7082a6;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #53688f;
+        }
+
+        .form-group input {
+            width: 100%;
+            height: 46px;
+            padding: 0 14px;
+            border: 1px solid #cfdced;
+            border-radius: 9px;
+            outline: none;
+            background: #ffffff;
+            color: #26385f;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #4169df;
+            box-shadow: 0 0 0 3px rgba(65, 105, 223, 0.10);
+        }
+
+        .login-button {
+            width: 100%;
+            height: 46px;
+            margin-top: 6px;
+            border: none;
+            border-radius: 9px;
+            background: #4169df;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(65, 105, 223, 0.20);
+            transition: 0.2s ease;
+        }
+
+        .login-button:hover {
+            background: #355bd0;
+            transform: translateY(-1px);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .login-error {
+            display: none;
+            margin-top: 14px;
+            padding: 11px 12px;
+            border-radius: 8px;
+            background: #fff0f1;
+            border: 1px solid #ffd2d6;
+            color: #d9364f;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .login-footer {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #edf1f7;
+            text-align: center;
+            color: #8a99b5;
+            font-size: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 30px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <section class="login-card">
+
+            <div class="login-brand">
+
+                <div class="login-logo">
+                    ₹
+                </div>
+
+                <h1>
+                    HouseLedger
+                </h1>
+
+                <p>
+                    Expense & Labour Management
+                </p>
+
+            </div>
+
+
+            <div class="login-heading">
+
+                <h2>
+                    Welcome back
+                </h2>
+
+                <p>
+                    Sign in to access your house project.
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    Sign In
+                </button>
+
+
+                <div
+                    class="login-error"
+                    id="loginError"
+                >
+                    Invalid username or password.
+                </div>
+
+            </form>
+
+
+            <div class="login-footer">
+                HouseLedger · Secure Project Access
+            </div>
+
+        </section>
+
+    </main>
+
+
+   <script>
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const loginError =
+        document.getElementById("loginError");
+
+
+    /* =========================================
+       LOGIN USERS
+    ========================================= */
+
+    const validUsers = [
+
+        {
+            username: "jhai vignesh",
+            password: "vicky@2005"
+        },
+
+        {
+            username: "Muruga",
+            password: "120369"
+        }
+
+    ];
+
+
+    /* =========================================
+       LOGIN
+    ========================================= */
+
+    loginForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const username =
+                document
+                    .getElementById("username")
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            const validUser =
+                validUsers.find(
+                    user =>
+                        user.username === username &&
+                        user.password === password
+                );
+
+
+            if (validUser) {
+
+                sessionStorage.setItem(
+                    "houseLedgerLoggedIn",
+                    "true"
+                );
+
+
+                sessionStorage.setItem(
+                    "houseLedgerUsername",
+                    validUser.username
+                );
+
+
+                window.location.href =
+                    "index.html";
+
+
+            } else {
+
+                loginError.style.display =
+                    "block";
+
+            }
+
+        }
+    );
+</script>
+
+</body>
+</html>

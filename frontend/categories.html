@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Categories · HouseLedger</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-page="categories">
+
+<div class="app-shell">
+
+  <!-- =====================================================
+       SIDEBAR
+  ====================================================== -->
+
+  <aside class="sidebar">
+
+    <a class="brand" href="index.html">
+
+      <div class="brand-mark">₹</div>
+
+      <div class="brand-copy">
+        <strong>HouseLedger</strong>
+        <span>Expense & Labour</span>
+      </div>
+
+    </a>
+
+
+    <div class="nav-label">
+      Workspace
+    </div>
+
+    <nav class="nav">
+
+      <a
+        class="nav-link"
+        data-page="dashboard"
+        href="index.html"
+      >
+        <span class="nav-icon">⌂</span>
+        Dashboard
+      </a>
+
+
+      <a
+        class="nav-link"
+        data-page="transactions"
+        href="transactions.html"
+      >
+        <span class="nav-icon">↔</span>
+        Transactions
+      </a>
+
+
+      <a
+        class="nav-link"
+        data-page="categories"
+        href="categories.html"
+      >
+        <span class="nav-icon">▦</span>
+        Categories
+      </a>
+
+
+      <a
+        class="nav-link"
+        data-page="export"
+        href="export.html"
+      >
+        <span class="nav-icon">⇩</span>
+        Export Excel
+      </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+      <div class="sidebar-status">
+
+        <span class="status-dot"></span>
+
+        <span id="connectionStatus">
+          Checking database...
+        </span>
+
+      </div>
+
+    </div>
+
+  </aside>
+
+
+  <!-- MOBILE OVERLAY -->
+  <div class="overlay"></div>
+
+
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
+  <main class="main">
+
+
+    <!-- ===================================================
+         TOPBAR
+    ==================================================== -->
+
+    <header class="topbar">
+
+      <div class="topbar-left">
+
+        <button
+          class="menu-btn"
+          id="menuBtn"
+          type="button"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+
+
+        <div class="page-heading">
+
+          <div class="eyebrow">
+            FINANCIAL MANAGEMENT
+          </div>
+
+          <h1>
+            Categories
+          </h1>
+
+          <p>
+            Organize your house expenses into meaningful categories.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="top-actions">
+
+        <button
+          class="icon-btn"
+          type="button"
+          title="Notifications"
+        >
+          ♢
+        </button>
+
+        <button
+          class="icon-btn"
+          type="button"
+          title="Help"
+        >
+          ?
+        </button>
+
+        <div class="avatar">
+          JV
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- ===================================================
+         CONTENT
+    ==================================================== -->
+
+    <div class="content">
+
+
+      <!-- =================================================
+           SUMMARY CARDS
+      ================================================== -->
+
+      <section class="grid grid-4">
+
+
+        <!-- TOTAL CATEGORIES -->
+
+        <div class="card stat-card">
+
+          <div class="stat-top">
+
+            <span class="stat-label">
+              Total Categories
+            </span>
+
+            <span
+              class="stat-icon"
+              style="
+                background:var(--primary-soft);
+                color:var(--primary);
+              "
+            >
+              #
+            </span>
+
+          </div>
+
+          <div
+            class="stat-value"
+            id="totalCategories"
+          >
+            0
+          </div>
+
+          <div class="stat-foot">
+            All categories
+          </div>
+
+        </div>
+
+
+        <!-- ACTIVE CATEGORIES -->
+
+        <div class="card stat-card">
+
+          <div class="stat-top">
+
+            <span class="stat-label">
+              Active Categories
+            </span>
+
+            <span
+              class="stat-icon"
+              style="
+                background:var(--success-soft);
+                color:var(--success);
+              "
+            >
+              ✓
+            </span>
+
+          </div>
+
+          <div
+            class="stat-value"
+            id="activeCategories"
+          >
+            0
+          </div>
+
+          <div class="stat-foot">
+            Currently available
+          </div>
+
+        </div>
+
+
+        <!-- TOTAL SPENDING -->
+
+        <div class="card stat-card">
+
+          <div class="stat-top">
+
+            <span class="stat-label">
+              Total Spending
+            </span>
+
+            <span
+              class="stat-icon"
+              style="
+                background:var(--danger-soft);
+                color:var(--danger);
+              "
+            >
+              ↘
+            </span>
+
+          </div>
+
+          <div
+            class="stat-value"
+            id="totalSpending"
+          >
+            ₹0.00
+          </div>
+
+          <div class="stat-foot">
+            Across all categories
+          </div>
+
+        </div>
+
+
+        <!-- TOTAL RECEIVED -->
+
+        <div class="card stat-card">
+
+          <div class="stat-top">
+
+            <span class="stat-label">
+              Total Received
+            </span>
+
+            <span
+              class="stat-icon"
+              style="
+                background:var(--accent-soft);
+                color:var(--accent);
+              "
+            >
+              ↗
+            </span>
+
+          </div>
+
+          <div
+            class="stat-value"
+            id="totalReceived"
+          >
+            ₹0.00
+          </div>
+
+          <div class="stat-foot">
+            Money received
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <div style="height:18px"></div>
+
+
+      <!-- =================================================
+           CATEGORY MANAGEMENT
+      ================================================== -->
+
+      <section class="card">
+
+
+        <!-- SECTION HEADER -->
+
+        <div class="card-pad section-head">
+
+          <div>
+
+            <div class="eyebrow">
+              CATEGORY MANAGEMENT
+            </div>
+
+            <h2>
+              Your categories
+            </h2>
+
+            <p>
+              Create and manage the categories used by your transactions.
+            </p>
+
+          </div>
+
+
+          <div
+            style="
+              display:flex;
+              align-items:center;
+              gap:10px;
+            "
+          >
+
+            <input
+              type="search"
+              id="categorySearch"
+              placeholder="Search categories..."
+              autocomplete="off"
+              style="
+                width:220px;
+              "
+            >
+
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="addCategoryBtn"
+            >
+              + New Category
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             CATEGORY TABLE
+        ================================================== -->
+
+        <div class="table-wrap">
+
+          <table class="table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Category
+                </th>
+
+                <th>
+                  Description
+                </th>
+
+                <th>
+                  Transactions
+                </th>
+
+                <th>
+                  Spent
+                </th>
+
+                <th>
+                  Received
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Actions
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody id="categoryRows">
+
+              <tr>
+
+                <td colspan="7">
+
+                  <div class="empty">
+
+                    <div class="empty-icon">
+                      ...
+                    </div>
+
+                    <strong>
+                      Loading categories
+                    </strong>
+
+                    <span>
+                      Getting your categories from PostgreSQL.
+                    </span>
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <!-- TABLE FOOTER -->
+
+        <div
+          class="card-pad"
+          style="
+            border-top:1px solid var(--border-light);
+          "
+        >
+
+          <span
+            class="small muted"
+            id="categoryResultCount"
+          >
+            Loading...
+          </span>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</div>
+
+
+<!-- =====================================================
+     CATEGORY MODAL
+====================================================== -->
+
+<div
+  class="modal hidden"
+  id="categoryModal"
+  aria-hidden="true"
+>
+
+  <div
+    class="modal-box"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+
+    <!-- MODAL HEADER -->
+
+    <div class="modal-header">
+
+      <div>
+
+        <div class="eyebrow">
+          CATEGORY
+        </div>
+
+        <h2 id="modalTitle">
+          Create Category
+        </h2>
+
+        <p>
+          Add a category for organizing your expenses.
+        </p>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="modal-close"
+        id="closeModalBtn"
+        aria-label="Close"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <!-- FORM -->
+
+    <form
+      id="categoryForm"
+      novalidate
+    >
+
+
+      <!-- CATEGORY NAME -->
+
+      <div class="field">
+
+        <label for="categoryName">
+          Category name
+        </label>
+
+        <input
+          type="text"
+          id="categoryName"
+          name="name"
+          maxlength="100"
+          placeholder="e.g. Cement, Electricity"
+          required
+        >
+
+        <small>
+          Use a clear and recognizable category name.
+        </small>
+
+      </div>
+
+
+      <!-- DESCRIPTION -->
+
+      <div class="field">
+
+        <label for="categoryDescription">
+          Description
+        </label>
+
+        <textarea
+          id="categoryDescription"
+          name="description"
+          rows="4"
+          maxlength="500"
+          placeholder="Describe what this category is used for..."
+        ></textarea>
+
+      </div>
+
+
+      <!-- FORM ACTIONS -->
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          id="cancelCategoryBtn"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          id="saveCategoryBtn"
+        >
+          Create Category
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="js/app.js"></script>
+<script src="js/categories.js"></script>
+
+</body>
+</html>

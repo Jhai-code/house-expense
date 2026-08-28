@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Transactions · HouseLedger</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+</head>
+
+
+<body data-page="transactions">
+
+
+<div class="app-shell">
+
+
+  <!-- =====================================================
+       SIDEBAR
+  ====================================================== -->
+
+  <aside class="sidebar">
+
+
+    <a
+      class="brand"
+      href="index.html"
+    >
+
+      <div class="brand-mark">
+        ₹
+      </div>
+
+      <div class="brand-copy">
+
+        <strong>
+          HouseLedger
+        </strong>
+
+        <span>
+          Expense & Labour
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <div class="nav-label">
+      Workspace
+    </div>
+
+
+    <nav class="nav">
+
+
+      <a
+        class="nav-link"
+        data-page="dashboard"
+        href="index.html"
+      >
+
+        <span class="nav-icon">
+          ⌂
+        </span>
+
+        Dashboard
+
+      </a>
+
+
+      <a
+        class="nav-link active"
+        data-page="transactions"
+        href="transactions.html"
+      >
+
+        <span class="nav-icon">
+          ↔
+        </span>
+
+        Transactions
+
+      </a>
+
+
+      <a
+        class="nav-link"
+        data-page="categories"
+        href="categories.html"
+      >
+
+        <span class="nav-icon">
+          ▦
+        </span>
+
+        Categories
+
+      </a>
+
+
+    </nav>
+
+
+    <div
+      class="nav-label"
+      style="margin-top:20px"
+    >
+      Tools
+    </div>
+
+
+    <nav class="nav">
+
+
+      <a
+        class="nav-link"
+        data-page="export"
+        href="export.html"
+      >
+
+        <span class="nav-icon">
+          ⇩
+        </span>
+
+        Export Excel
+
+      </a>
+
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+
+      <div class="sidebar-status">
+
+        <span class="status-dot"></span>
+
+        <span id="databaseStatus">
+          Checking database...
+        </span>
+
+      </div>
+
+
+    </div>
+
+
+  </aside>
+
+
+  <div class="overlay"></div>
+
+
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
+  <main class="main">
+
+
+    <!-- ===================================================
+         TOPBAR
+    ==================================================== -->
+
+    <header class="topbar">
+
+
+      <div class="topbar-left">
+
+
+        <button
+          class="menu-btn"
+          id="menuBtn"
+          type="button"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+
+
+        <div class="page-heading">
+
+
+          <div class="eyebrow">
+            FINANCIAL RECORDS
+          </div>
+
+
+          <h1>
+            Transactions
+          </h1>
+
+
+          <p>
+            Track every amount received and every expense.
+          </p>
+
+
+        </div>
+
+
+      </div>
+
+
+      <!-- TOP RIGHT -->
+
+      <div class="top-actions">
+
+
+        <button
+          class="icon-btn"
+          type="button"
+          title="Notifications"
+        >
+          ♢
+        </button>
+
+
+        <button
+          class="icon-btn"
+          type="button"
+          title="Help"
+        >
+          ?
+        </button>
+
+
+        <div class="avatar">
+          JV
+        </div>
+
+
+      </div>
+
+
+    </header>
+
+
+    <!-- ===================================================
+         CONTENT
+    ==================================================== -->
+
+    <div class="content">
+
+
+      <!-- =================================================
+           SUMMARY CARDS
+      ================================================== -->
+
+      <section class="grid grid-4">
+
+
+        <!-- TOTAL CREDIT -->
+
+        <div class="card stat-card">
+
+
+          <div class="stat-top">
+
+
+            <span class="stat-label">
+              Total Credit
+            </span>
+
+
+            <span
+              class="stat-icon"
+              style="
+                background:var(--success-soft);
+                color:var(--success);
+              "
+            >
+              ↗
+            </span>
+
+
+          </div>
+
+
+          <div
+            class="stat-value"
+            id="pageTotalCredit"
+          >
+            ₹0.00
+          </div>
+
+
+          <div class="stat-foot">
+
+            <span class="trend-up">
+              Credits
+            </span>
+
+            Money received
+
+          </div>
+
+
+        </div>
+
+
+        <!-- TOTAL DEBIT -->
+
+        <div class="card stat-card">
+
+
+          <div class="stat-top">
+
+
+            <span class="stat-label">
+              Total Debit
+            </span>
+
+
+            <span
+              class="stat-icon"
+              style="
+                background:var(--danger-soft);
+                color:var(--danger);
+              "
+            >
+              ↘
+            </span>
+
+
+          </div>
+
+
+          <div
+            class="stat-value"
+            id="pageTotalDebit"
+          >
+            ₹0.00
+          </div>
+
+
+          <div class="stat-foot">
+
+            <span class="trend-down">
+              Debits
+            </span>
+
+            Money spent
+
+          </div>
+
+
+        </div>
+
+
+        <!-- BALANCE -->
+
+        <div class="card stat-card">
+
+
+          <div class="stat-top">
+
+
+            <span class="stat-label">
+              Current Balance
+            </span>
+
+
+            <span
+              class="stat-icon"
+              style="
+                background:var(--primary-soft);
+                color:var(--primary);
+              "
+            >
+              ₹
+            </span>
+
+
+          </div>
+
+
+          <div
+            class="stat-value"
+            id="pageBalance"
+          >
+            ₹0.00
+          </div>
+
+
+          <div class="stat-foot">
+
+            Available project balance
+
+          </div>
+
+
+        </div>
+
+
+        <!-- TRANSACTION COUNT -->
+
+        <div class="card stat-card">
+
+
+          <div class="stat-top">
+
+
+            <span class="stat-label">
+              Transactions
+            </span>
+
+
+            <span
+              class="stat-icon"
+              style="
+                background:var(--accent-soft);
+                color:var(--accent);
+              "
+            >
+              #
+            </span>
+
+
+          </div>
+
+
+          <div
+            class="stat-value"
+            id="pageTransactionCount"
+          >
+            0
+          </div>
+
+
+          <div class="stat-foot">
+
+            Records found
+
+          </div>
+
+
+        </div>
+
+
+      </section>
+
+
+      <div style="height:18px"></div>
+
+
+      <!-- =================================================
+           SEARCH & FILTER
+      ================================================== -->
+
+      <section class="card filters-card">
+
+
+        <div class="card-pad section-head">
+
+
+          <div>
+
+
+            <div class="eyebrow">
+              SEARCH & FILTER
+            </div>
+
+
+            <h2>
+              Find transactions
+            </h2>
+
+
+            <p>
+              Search and filter your financial records.
+            </p>
+
+
+          </div>
+
+
+          <span
+            class="muted small"
+            id="resultCount"
+          >
+            0 transactions
+          </span>
+
+
+        </div>
+
+
+        <div class="card-pad">
+
+
+          <div class="filters-grid">
+
+
+            <!-- SEARCH -->
+
+            <div class="field">
+
+
+              <label for="search">
+                Search
+              </label>
+
+
+              <input
+                id="search"
+                type="search"
+                placeholder="Search description or notes..."
+                autocomplete="off"
+              >
+
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="field">
+
+
+              <label for="categoryFilter">
+                Category
+              </label>
+
+
+              <select id="categoryFilter">
+
+                <option value="">
+                  All categories
+                </option>
+
+              </select>
+
+
+            </div>
+
+
+            <!-- TYPE -->
+
+            <div class="field">
+
+
+              <label for="typeFilter">
+                Transaction type
+              </label>
+
+
+              <select id="typeFilter">
+
+                <option value="">
+                  All types
+                </option>
+
+                <option value="credit">
+                  Credit
+                </option>
+
+                <option value="debit">
+                  Debit
+                </option>
+
+              </select>
+
+
+            </div>
+
+
+            <!-- FROM -->
+
+            <div class="field">
+
+
+              <label for="fromDate">
+                From date
+              </label>
+
+
+              <input
+                id="fromDate"
+                type="date"
+              >
+
+
+            </div>
+
+
+            <!-- TO -->
+
+            <div class="field">
+
+
+              <label for="toDate">
+                To date
+              </label>
+
+
+              <input
+                id="toDate"
+                type="date"
+              >
+
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+
+      </section>
+
+
+      <div style="height:18px"></div>
+
+
+      <!-- =================================================
+           TRANSACTION HISTORY
+      ================================================== -->
+
+      <section class="card">
+
+
+        <div class="card-pad section-head">
+
+
+          <div>
+
+
+            <div class="eyebrow">
+              TRANSACTION HISTORY
+            </div>
+
+
+            <h2>
+              All transactions
+            </h2>
+
+
+            <p>
+              Complete record of your credits and expenses.
+            </p>
+
+
+          </div>
+
+
+          <button
+            class="btn btn-primary btn-small"
+            id="addBtnSecondary"
+            type="button"
+          >
+            + Add
+          </button>
+
+
+        </div>
+
+
+        <div class="table-wrap">
+
+
+          <table>
+
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Date
+                </th>
+
+                <th>
+                  Description
+                </th>
+
+                <th>
+                  Category
+                </th>
+
+                <th>
+                  Credit
+                </th>
+
+                <th>
+                  Debit
+                </th>
+
+                <th>
+                  Balance
+                </th>
+
+                <th>
+                  Actions
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody id="transactionRows">
+
+
+              <tr>
+
+
+                <td colspan="7">
+
+
+                  <div class="empty">
+
+
+                    <div class="empty-icon">
+                      ...
+                    </div>
+
+
+                    <strong>
+                      Loading transactions
+                    </strong>
+
+
+                    <span>
+                      Getting the latest records from PostgreSQL.
+                    </span>
+
+
+                  </div>
+
+
+                </td>
+
+
+              </tr>
+
+
+            </tbody>
+
+
+          </table>
+
+
+        </div>
+
+
+      </section>
+
+
+    </div>
+
+
+  </main>
+
+
+</div>
+
+
+<!-- =====================================================
+     TRANSACTION MODAL
+====================================================== -->
+
+<div
+  class="modal hidden"
+  id="transactionModal"
+  aria-hidden="true"
+>
+  <div
+    class="modal-box"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+
+    <!-- MODAL HEADER -->
+    <div class="modal-header">
+
+      <div>
+        <div class="eyebrow">
+          TRANSACTION
+        </div>
+
+        <h2 id="modalTitle">
+          Add Transaction
+        </h2>
+
+        <p>
+          Record money received or an expense.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="modal-close"
+        id="closeModalBtn"
+        aria-label="Close transaction form"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <!-- FORM -->
+    <form
+      id="transactionForm"
+      novalidate
+    >
+
+      <div class="form-grid">
+
+        <!-- DATE -->
+        <div class="field">
+
+          <label for="formDate">
+            Date
+          </label>
+
+          <input
+            id="formDate"
+            type="date"
+            required
+          >
+
+        </div>
+
+
+        <!-- TRANSACTION TYPE -->
+        <div class="field">
+
+          <label>
+            Transaction type
+          </label>
+
+          <div class="segmented-control">
+
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value="credit"
+              >
+
+              <span>
+                Credit
+              </span>
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value="debit"
+                checked
+              >
+
+              <span>
+                Debit
+              </span>
+            </label>
+
+          </div>
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+        <div class="field field-full">
+
+          <label for="formDescription">
+            Description
+          </label>
+
+          <input
+            id="formDescription"
+            type="text"
+            maxlength="200"
+            placeholder="Example: Cement purchase"
+            required
+          >
+
+        </div>
+
+
+        <!-- CATEGORY -->
+        <div class="field">
+
+          <label for="formCategory">
+            Category
+          </label>
+
+          <select
+            id="formCategory"
+            required
+          >
+            <option value="">
+              Select category
+            </option>
+          </select>
+
+        </div>
+
+
+        <!-- AMOUNT -->
+        <div class="field">
+
+          <label for="formAmount">
+            Amount
+          </label>
+
+          <div class="amount-input">
+
+            <span>₹</span>
+
+            <input
+              id="formAmount"
+              type="number"
+              min="0.01"
+              step="0.01"
+              placeholder="0.00"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- NOTES -->
+        <div class="field field-full">
+
+          <label for="formNotes">
+            Notes
+          </label>
+
+          <textarea
+            id="formNotes"
+            rows="3"
+            maxlength="500"
+            placeholder="Optional notes..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+
+      <!-- MODAL FOOTER -->
+      <div class="modal-footer">
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          id="cancelBtn"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          id="saveTransactionBtn"
+        >
+          Save Transaction
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="js/transaction.js"></script>
+
+</body>
+</html>
