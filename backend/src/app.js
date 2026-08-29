@@ -13,7 +13,8 @@ const dashboardRoutes =
 
 const exportRoutes =
   require("./routes/exportRoutes");
-
+const authRoutes =
+  require("./routes/authRoutes");
 
 const app =
   express();
@@ -103,7 +104,10 @@ app.use(
   "/api/export",
   exportRoutes
 );
-
+app.use(
+  "/api/auth",
+  authRoutes
+);
 
 /* ----------------------------------
    404

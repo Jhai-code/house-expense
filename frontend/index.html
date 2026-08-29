@@ -278,96 +278,69 @@
     </main>
 
 
-   <script>
-    const loginForm =
-        document.getElementById("loginForm");
+  <script>
+const loginForm = document.getElementById("loginForm");
+const loginError = document.getElementById("loginError");
 
-    const loginError =
-        document.getElementById("loginError");
+const API_BASE_URL = "https://house-expense-gdf.onrender.com";
 
+loginForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-    /* =========================================
-       LOGIN USERS
-    ========================================= */
+    loginError.style.display = "none";
 
-    const validUsers = [
+    const username = document
+        .getElementById("username")
+        .value
+        .trim();
 
-        {
-            username: "jhai vignesh",
-            password: "vicky@2005"
-        },
+    const password = document
+        .getElementById("password")
+        .value;
 
-        {
-            username: "Muruga",
-            password: "120369"
-        },
-        {
-            username:"latha",
-            password:"2005"
-        }
-
-    ];
-
-
-    /* =========================================
-       LOGIN
-    ========================================= */
-
-    loginForm.addEventListener(
-        "submit",
-        function (event) {
-
-            event.preventDefault();
-
-
-            const username =
-                document
-                    .getElementById("username")
-                    .value
-                    .trim();
-
-
-            const password =
-                document
-                    .getElementById("password")
-                    .value;
-
-
-            const validUser =
-                validUsers.find(
-                    user =>
-                        user.username === username &&
-                        user.password === password
-                );
-
-
-            if (validUser) {
-
-                sessionStorage.setItem(
-                    "houseLedgerLoggedIn",
-                    "true"
-                );
-
-
-                sessionStorage.setItem(
-                    "houseLedgerUsername",
-                    validUser.username
-                );
-
-
-                window.location.href =
-                    "dashboard.html";
-
-
-            } else {
-
-                loginError.style.display =
-                    "block";
-
+    try {
+        const response = await fetch(
+            `${API_BASE_URL}/api/auth/login`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username,
+                    password
+                })
             }
+        );
 
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            throw new Error(
+                data.message || "Login failed"
+            );
         }
-    );
+
+        sessionStorage.setItem(
+            "houseLedgerLoggedIn",
+            "true"
+        );
+
+        sessionStorage.setItem(
+            "houseLedgerUsername",
+            data.username
+        );
+
+        window.location.href = "index.html";
+
+    } catch (error) {
+
+        loginError.textContent =
+            error.message || "Unable to connect to the server.";
+
+        loginError.style.display = "block";
+    }
+});
 </script>
 
 </body>
