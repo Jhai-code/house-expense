@@ -1,7 +1,6 @@
 {
   "name": "house-expense-backend",
   "version": "1.0.0",
-  "description": "House Expense and Labour Tracking Backend",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
@@ -13,9 +12,8 @@
     "exceljs": "^4.4.0",
     "express": "^4.21.2",
     "helmet": "^8.0.0",
-    "multer": "^1.4.5-lts.1",
-    "pg": "^8.13.1",
-    "xlsx": "^0.18.5"
+    "multer": "^2.3.0",
+    "pg": "^8.13.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"

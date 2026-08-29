@@ -1,348 +1,645 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta name="google-site-verification" content="QqtgRrFk-vbHm-Q8sqwUFqeB24JUlVFDWWMiY0OdlAE" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login | HouseLedger</title>
+    <title>Dashboard · HouseLedger</title>
 
     <link rel="stylesheet" href="css/style.css">
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f7fc;
-            color: #26385f;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .login-page {
-            width: 100%;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-        }
-
-        .login-card {
-            width: 100%;
-            max-width: 420px;
-            background: #ffffff;
-            border: 1px solid #dce4f1;
-            border-radius: 18px;
-            padding: 40px;
-            box-shadow: 0 18px 50px rgba(35, 55, 95, 0.10);
-        }
-
-        .login-brand {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .login-logo {
-            width: 58px;
-            height: 58px;
-            margin: 0 auto 16px;
-            border-radius: 15px;
-            background: #4169df;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 25px;
-            font-weight: 700;
-            box-shadow: 0 10px 25px rgba(65, 105, 223, 0.22);
-        }
-
-        .login-brand h1 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: 700;
-            color: #26385f;
-        }
-
-        .login-brand p {
-            margin: 7px 0 0;
-            font-size: 13px;
-            color: #7082a6;
-        }
-
-        .login-heading {
-            margin-bottom: 24px;
-        }
-
-        .login-heading h2 {
-            margin: 0 0 7px;
-            font-size: 20px;
-            color: #26385f;
-        }
-
-        .login-heading p {
-            margin: 0;
-            font-size: 13px;
-            color: #7082a6;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #53688f;
-        }
-
-        .form-group input {
-            width: 100%;
-            height: 46px;
-            padding: 0 14px;
-            border: 1px solid #cfdced;
-            border-radius: 9px;
-            outline: none;
-            background: #ffffff;
-            color: #26385f;
-            font-size: 14px;
-            transition: 0.2s ease;
-        }
-
-        .form-group input:focus {
-            border-color: #4169df;
-            box-shadow: 0 0 0 3px rgba(65, 105, 223, 0.10);
-        }
-
-        .login-button {
-            width: 100%;
-            height: 46px;
-            margin-top: 6px;
-            border: none;
-            border-radius: 9px;
-            background: #4169df;
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 8px 18px rgba(65, 105, 223, 0.20);
-            transition: 0.2s ease;
-        }
-
-        .login-button:hover {
-            background: #355bd0;
-            transform: translateY(-1px);
-        }
-
-        .login-button:active {
-            transform: translateY(0);
-        }
-
-        .login-error {
-            display: none;
-            margin-top: 14px;
-            padding: 11px 12px;
-            border-radius: 8px;
-            background: #fff0f1;
-            border: 1px solid #ffd2d6;
-            color: #d9364f;
-            font-size: 13px;
-            text-align: center;
-        }
-
-        .login-footer {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #edf1f7;
-            text-align: center;
-            color: #8a99b5;
-            font-size: 12px;
-        }
-
-        @media (max-width: 480px) {
-            .login-card {
-                padding: 30px 24px;
-            }
-        }
-    </style>
 </head>
 
-<body>
+<body data-page="dashboard">
 
-    <main class="login-page">
+    <div class="app-shell">
 
-        <section class="login-card">
+        <!-- ================= SIDEBAR ================= -->
 
-            <div class="login-brand">
+        <aside class="sidebar">
 
-                <div class="login-logo">
-                    ₹
+            <!-- Brand -->
+
+            <a class="brand" href="index.html">
+
+                <div class="brand-mark">₹</div>
+
+                <div class="brand-copy">
+                    <strong>HouseLedger</strong>
+                    <span>Expense & Labour</span>
                 </div>
 
-                <h1>
-                    HouseLedger
-                </h1>
+            </a>
 
-                <p>
-                    Expense & Labour Management
-                </p>
 
+            <!-- Navigation -->
+
+            <div class="nav-label">
+                Workspace
             </div>
 
 
-            <div class="login-heading">
+            <nav class="nav">
 
-                <h2>
-                    Welcome back
-                </h2>
+                <!-- Dashboard -->
 
-                <p>
-                    Sign in to access your house project.
-                </p>
+                <a
+                    class="nav-link"
+                    data-page="dashboard"
+                    href="index.html"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span>Dashboard</span>
+                </a>
 
+
+                <!-- Transactions -->
+
+                <a
+                    class="nav-link"
+                    data-page="transactions"
+                    href="transactions.html"
+                >
+                    <span class="nav-icon">⇄</span>
+                    <span>Transactions</span>
+                </a>
+
+
+                <!-- Categories -->
+
+                <a
+                    class="nav-link"
+                    data-page="categories"
+                    href="categories.html"
+                >
+                    <span class="nav-icon">◈</span>
+                    <span>Categories</span>
+                </a>
+
+            </nav>
+
+
+            <!-- Tools -->
+
+            <div class="nav-label nav-label-tools">
+                Tools
             </div>
 
 
-            <form id="loginForm">
+            <nav class="nav">
 
-                <div class="form-group">
+                <!-- Export -->
 
-                    <label for="username">
-                        Username
-                    </label>
+                <a
+                    class="nav-link"
+                    data-page="export"
+                    href="export.html"
+                >
+                    <span class="nav-icon">⇩</span>
+                    <span>Export Excel</span>
+                </a>
 
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        placeholder="Enter your username"
-                        autocomplete="username"
-                        required
+            </nav>
+
+
+            <!-- Status -->
+
+            <div class="sidebar-bottom">
+
+                <div class="database-status">
+
+                    <span class="status-dot"></span>
+
+                    <span>HouseLedger</span>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Mobile Overlay -->
+
+        <div class="overlay"></div>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="main">
+
+
+            <!-- Topbar -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        class="menu-btn"
+                        aria-label="Open menu"
+                    >
+                        ☰
+                    </button>
+
+
+                    <div class="page-heading">
+
+                        <h1>
+                            Dashboard
+                        </h1>
+
+                        <p>
+                            Your house project at a glance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="top-actions">
+
+                    <button
+                        class="icon-btn"
+                        title="Notifications"
+                    >
+                        ♢
+                    </button>
+
+
+                    <button
+                        class="icon-btn"
+                        title="Help"
+                    >
+                        ?
+                    </button>
+
+
+                    <div class="avatar">
+                        JV
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ================= CONTENT ================= -->
+
+            <div class="content">
+
+
+                <!-- Statistics -->
+
+                <div class="grid grid-4">
+
+
+                    <!-- Total Credit -->
+
+                    <div class="card stat-card">
+
+                        <div class="stat-top">
+
+                            <span class="stat-label">
+                                Total Credit
+                            </span>
+
+                            <span
+                                class="stat-icon"
+                                style="background:var(--success-soft);color:var(--success)"
+                            >
+                                ↗
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="stat-value"
+                            id="totalCredit"
+                        >
+                            ₹0.00
+                        </div>
+
+
+                        <div class="stat-foot">
+
+                            <span class="trend-up">
+                                +12.4%
+                            </span>
+
+                            vs last period
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Total Debit -->
+
+                    <div class="card stat-card">
+
+                        <div class="stat-top">
+
+                            <span class="stat-label">
+                                Total Debit
+                            </span>
+
+                            <span
+                                class="stat-icon"
+                                style="background:var(--danger-soft);color:var(--danger)"
+                            >
+                                ↘
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="stat-value"
+                            id="totalDebit"
+                        >
+                            ₹0.00
+                        </div>
+
+
+                        <div class="stat-foot">
+
+                            <span class="trend-down">
+                                8.2%
+                            </span>
+
+                            of project fund
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Balance -->
+
+                    <div class="card stat-card">
+
+                        <div class="stat-top">
+
+                            <span class="stat-label">
+                                Current Balance
+                            </span>
+
+                            <span
+                                class="stat-icon"
+                                style="background:var(--primary-soft);color:var(--primary)"
+                            >
+                                ₹
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="stat-value"
+                            id="currentBalance"
+                        >
+                            ₹0.00
+                        </div>
+
+
+                        <div class="stat-foot">
+                            Available project balance
+                        </div>
+
+                    </div>
+
+
+                    <!-- Labour Cost -->
+
+                    <div class="card stat-card">
+
+                        <div class="stat-top">
+
+                            <span class="stat-label">
+                                Labour Cost
+                            </span>
+
+                            <span
+                                class="stat-icon"
+                                style="background:var(--accent-soft);color:var(--accent)"
+                            >
+                                ♙
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="stat-value"
+                            id="labourCost"
+                        >
+                            ₹0.00
+                        </div>
+
+
+                        <div class="stat-foot">
+                            All recorded labour wages
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div style="height:18px"></div>
+
+
+                <!-- ================= DASHBOARD GRID ================= -->
+
+                <div class="page-grid">
+
+
+                    <!-- LEFT SIDE -->
+
+                    <div
+                        class="grid"
+                        style="gap:18px"
                     >
 
-                </div>
+
+                        <!-- Daily Spending -->
+
+                        <div class="card chart-card">
+
+                            <div class="section-head">
+
+                                <div>
+
+                                    <h2>
+                                        Daily Spending
+                                    </h2>
+
+                                    <p>
+                                        Debit activity for the current week
+                                    </p>
+
+                                </div>
 
 
-                <div class="form-group">
+                                <span class="badge badge-blue">
+                                    This Week
+                                </span>
 
-                    <label for="password">
-                        Password
-                    </label>
+                            </div>
 
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
-                        required
+
+                            <div class="chart-box">
+
+                                <div
+                                    class="bar-chart"
+                                    id="dailyBars"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Recent Transactions -->
+
+                        <div class="card">
+
+                            <div class="card-pad section-head">
+
+                                <div>
+
+                                    <h2>
+                                        Recent Transactions
+                                    </h2>
+
+                                    <p>
+                                        Latest entries across your project
+                                    </p>
+
+                                </div>
+
+
+                                <a
+                                    class="link-btn"
+                                    href="transactions.html"
+                                >
+                                    View all →
+                                </a>
+
+                            </div>
+
+
+                            <div class="table-wrap">
+
+                                <table class="table">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>Date</th>
+                                            <th>Description</th>
+                                            <th>Category</th>
+                                            <th>Amount</th>
+                                            <th>Balance</th>
+
+                                        </tr>
+
+                                    </thead>
+
+
+                                    <tbody
+                                        id="recentRows"
+                                    ></tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- RIGHT SIDE -->
+
+                    <aside
+                        class="grid"
+                        style="gap:18px"
                     >
 
+
+                        <!-- Expense Mix -->
+
+                        <div class="card chart-card">
+
+                            <div class="section-head">
+
+                                <div>
+
+                                    <h2>
+                                        Expense Mix
+                                    </h2>
+
+                                    <p>
+                                        Top spending categories
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="donut-wrap">
+
+                                <div
+                                    class="donut"
+                                    id="expenseDonut"
+                                ></div>
+
+
+                                <div class="donut-center">
+
+                                    <strong>
+                                        Spending
+                                    </strong>
+
+                                    <span>
+                                        by category
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="legend"
+                                id="categoryLegend"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- Quick Actions -->
+
+                        <div class="card card-pad">
+
+                            <div class="section-head">
+
+                                <div>
+
+                                    <h2>
+                                        Quick Actions
+                                    </h2>
+
+                                    <p>
+                                        Common project tasks
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="quick-actions">
+
+
+                                <button
+                                    class="quick"
+                                    id="addExpenseBtn"
+                                >
+
+                                    <strong>
+                                        + Expense
+                                    </strong>
+
+                                    <span>
+                                        Record credit or debit
+                                    </span>
+
+                                </button>
+
+
+                                <button
+                                    class="quick"
+                                    id="addLabourBtn"
+                                >
+
+                                    <strong>
+                                        + Labour
+                                    </strong>
+
+                                    <span>
+                                        Add today's wages
+                                    </span>
+
+                                </button>
+
+
+                                <a
+                                    class="quick"
+                                    href="transactions.html"
+                                >
+
+                                    <strong>
+                                        Transactions
+                                    </strong>
+
+                                    <span>
+                                        View all transactions
+                                    </span>
+
+                                </a>
+
+
+                                <a
+                                    class="quick"
+                                    href="export.html"
+                                >
+
+                                    <strong>
+                                        Export
+                                    </strong>
+
+                                    <span>
+                                        Download your data
+                                    </span>
+
+                                </a>
+
+
+                            </div>
+
+                        </div>
+
+
+                    </aside>
+
+
                 </div>
 
 
-                <button
-                    type="submit"
-                    class="login-button"
-                >
-                    Sign In
-                </button>
-
-
-                <div
-                    class="login-error"
-                    id="loginError"
-                >
-                    Invalid username or password.
-                </div>
-
-            </form>
-
-
-            <div class="login-footer">
-                HouseLedger · Secure Project Access
             </div>
 
-        </section>
-
-    </main>
+        </main>
 
 
-  <script>
-const loginForm = document.getElementById("loginForm");
-const loginError = document.getElementById("loginError");
+    </div>
 
-const API_BASE_URL = "https://house-expense-gdf.onrender.com";
 
-loginForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
+    <!-- JavaScript -->
 
-    loginError.style.display = "none";
+    <script src="js/app.js"></script>
 
-    const username = document
-        .getElementById("username")
-        .value
-        .trim();
+    <script src="js/dashboard.js"></script>
 
-    const password = document
-        .getElementById("password")
-        .value;
-
-    try {
-        const response = await fetch(
-            `${API_BASE_URL}/api/auth/login`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    username,
-                    password
-                })
-            }
-        );
-
-        const data = await response.json();
-
-        if (!response.ok || !data.success) {
-            throw new Error(
-                data.message || "Login failed"
-            );
-        }
-
-        sessionStorage.setItem(
-            "houseLedgerLoggedIn",
-            "true"
-        );
-
-        sessionStorage.setItem(
-            "houseLedgerUsername",
-            data.username
-        );
-
-        window.location.href = "index.html";
-
-    } catch (error) {
-
-        loginError.textContent =
-            error.message || "Unable to connect to the server.";
-
-        loginError.style.display = "block";
-    }
-});
-</script>
 
 </body>
+
 </html>

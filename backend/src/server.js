@@ -13,7 +13,9 @@ async function startServer() {
 
     await testConnection();
 
-    console.log("PostgreSQL database connected successfully");
+    console.log(
+      "PostgreSQL database connected successfully"
+    );
 
     app.listen(PORT, () => {
 
@@ -25,7 +27,10 @@ async function startServer() {
 
   } catch (error) {
 
-    console.error("Failed to start server:", error);
+    console.error(
+      "Failed to start server:",
+      error
+    );
 
     process.exit(1);
 
