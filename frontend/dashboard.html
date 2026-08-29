@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard · HouseLedger</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="dashboard">
+<div class="app-shell">
+
+<aside class="sidebar">
+
+  <!-- Brand -->
+  <a class="brand" href="dashboard.html">
+    <div class="brand-mark">₹</div>
+
+    <div class="brand-copy">
+      <strong>HouseLedger</strong>
+      <span>Expense & Labour</span>
+    </div>
+  </a>
+
+
+  <!-- Main Navigation -->
+  <div class="nav-label">Workspace</div>
+
+  <nav class="nav">
+
+    <a
+      class="nav-link"
+      data-page="dashboard"
+      href="dashboard.html"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Dashboard</span>
+    </a>
+
+    <a
+      class="nav-link"
+      data-page="transactions"
+      href="transactions.html"
+    >
+      <span class="nav-icon">⇄</span>
+      <span>Transactions</span>
+    </a>
+
+    <a
+      class="nav-link"
+      data-page="categories"
+      href="categories.html"
+    >
+      <span class="nav-icon">◈</span>
+      <span>Categories</span>
+    </a>
+
+  </nav>
+
+
+  <!-- Tools -->
+  <div class="nav-label nav-label-tools">
+    Tools
+  </div>
+
+  <nav class="nav">
+
+    <a
+      class="nav-link"
+      data-page="export"
+      href="export.html"
+    >
+      <span class="nav-icon">⇩</span>
+      <span>Export Excel</span>
+    </a>
+
+  </nav>
+
+
+  <!-- Connection Status -->
+  <div class="sidebar-bottom">
+
+    <div class="database-status">
+      <span class="status-dot"></span>
+      <span>Database connected</span>
+    </div>
+
+  </div>
+
+</aside>
+
+<div class="overlay"></div>
+<div class="overlay"></div>
+
+<main class="main">
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="menu-btn" aria-label="Open menu">☰</button>
+    <div class="page-heading"><h1>Dashboard</h1><p>Your house project at a glance</p></div>
+  </div>
+  <div class="top-actions">
+    <button class="icon-btn" title="Notifications">♢</button>
+    <button class="icon-btn" title="Help">?</button>
+    <div class="avatar">JV</div>
+  </div>
+</header>
+<div class="content">
+
+<div class="grid grid-4">
+  <div class="card stat-card"><div class="stat-top"><span class="stat-label">Total Credit</span><span class="stat-icon" style="background:var(--success-soft);color:var(--success)">↗</span></div><div class="stat-value" id="totalCredit">₹0.00</div><div class="stat-foot"><span class="trend-up">+12.4%</span> vs last period</div></div>
+  <div class="card stat-card"><div class="stat-top"><span class="stat-label">Total Debit</span><span class="stat-icon" style="background:var(--danger-soft);color:var(--danger)">↘</span></div><div class="stat-value" id="totalDebit">₹0.00</div><div class="stat-foot"><span class="trend-down">8.2%</span> of project fund</div></div>
+  <div class="card stat-card"><div class="stat-top"><span class="stat-label">Current Balance</span><span class="stat-icon" style="background:var(--primary-soft);color:var(--primary)">₹</span></div><div class="stat-value" id="currentBalance">₹0.00</div><div class="stat-foot">Available project balance</div></div>
+  <div class="card stat-card"><div class="stat-top"><span class="stat-label">Labour Cost</span><span class="stat-icon" style="background:var(--accent-soft);color:var(--accent)">♙</span></div><div class="stat-value" id="labourCost">₹0.00</div><div class="stat-foot">All recorded labour wages</div></div>
+</div>
+
+<div style="height:18px"></div>
+<div class="page-grid">
+  <div class="grid" style="gap:18px">
+    <div class="card chart-card">
+      <div class="section-head"><div><h2>Daily Spending</h2><p>Debit activity for the current week</p></div><span class="badge badge-blue">This Week</span></div>
+      <div class="chart-box"><div class="bar-chart" id="dailyBars"></div></div>
+    </div>
+    <div class="card">
+      <div class="card-pad section-head"><div><h2>Recent Transactions</h2><p>Latest entries across your project</p></div><a class="link-btn" href="transactions.html">View all →</a></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Date</th><th>Description</th><th>Category</th><th>Amount</th><th>Balance</th></tr></thead><tbody id="recentRows"></tbody></table></div>
+    </div>
+  </div>
+  <aside class="grid" style="gap:18px">
+    <div class="card chart-card">
+      <div class="section-head"><div><h2>Expense Mix</h2><p>Top spending categories</p></div></div>
+      <div class="donut-wrap"><div class="donut" id="expenseDonut"></div><div class="donut-center"><strong>Spending</strong><span>by category</span></div></div>
+      <div class="legend" id="categoryLegend"></div>
+    </div>
+    <div class="card card-pad">
+      <div class="section-head"><div><h2>Quick Actions</h2><p>Common project tasks</p></div></div>
+      <div class="quick-actions">
+        <button class="quick" id="addExpenseBtn"><strong>+ Expense</strong><span>Record credit or debit</span></button>
+        <button class="quick" id="addLabourBtn"><strong>+ Labour</strong><span>Add today's wages</span></button>
+        <a class="quick" href="reports.html"><strong>Reports</strong><span>Review date ranges</span></a>
+        <a class="quick" href="import.html"><strong>Import</strong><span>Bring Excel data in</span></a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+</div>
+</main>
+</div>
+<script>
+    if (
+        sessionStorage.getItem("houseLedgerLoggedIn") !== "true"
+    ) {
+        window.location.href = "index.html";
+    }
+</script>
+
+<script src="js/app.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
