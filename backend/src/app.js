@@ -32,15 +32,14 @@ app.use(
 /* ----------------------------------
    CORS
 ----------------------------------- */
-
 app.use(
   cors({
-    origin: true,
-    credentials: true
+    origin: "https://house-expense-1.onrender.com",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
   })
 );
-
-
 /* ----------------------------------
    BODY PARSING
 ----------------------------------- */
