@@ -32,14 +32,47 @@ app.use(
 /* ----------------------------------
    CORS
 ----------------------------------- */
+const allowedOrigins = [
+  "https://house-expense-1.onrender.com",
+  "http://localhost:5500",
+  "http://127.0.0.1:5500"
+];
+
 app.use(
   cors({
-    origin: "https://house-expense-1.onrender.com",
+    origin: function (origin, callback) {
+
+      // Allow requests without origin
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(
+        new Error("Not allowed by CORS")
+      );
+    },
+
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"]
+
+    methods: [
+      "GET",
+      "POST",
+      "PUT",
+      "DELETE",
+      "OPTIONS"
+    ],
+
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization"
+    ]
   })
 );
+app.options("*", cors());
 /* ----------------------------------
    BODY PARSING
 ----------------------------------- */
