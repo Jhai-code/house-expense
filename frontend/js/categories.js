@@ -9,14 +9,12 @@
    API CONFIGURATION
 ========================================================= */
 
-const CATEGORY_API =
-  "http://localhost:3000/api/categories";
+const API_BASE_URL = "https://house-expense-gdlf.onrender.com";
 
-
+const CATEGORY_API = `${API_BASE_URL}/api/categories`;
 /* =========================================================
    PAGE INITIALIZATION
 ========================================================= */
-
 document.addEventListener(
   "DOMContentLoaded",
   () => {

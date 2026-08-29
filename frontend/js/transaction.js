@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
      CONFIGURATION
   ======================================================= */
 
-  const API_BASE_URL = "http://localhost:3000/api";
+   const API_BASE_URL = "https://house-expense-gdlf.onrender.com/api";
 
 
   /* =======================================================
