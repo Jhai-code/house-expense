@@ -1,13 +1,10 @@
 require("dotenv").config();
 
-const app = require("./app");
+const app = require("./src/app");
 
-const {
-  testConnection
-} = require("./config/db");
+const { testConnection } = require("./src/config/db");
 
-const PORT =
-  process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 
 async function startServer() {
@@ -16,34 +13,19 @@ async function startServer() {
 
     await testConnection();
 
-    console.log(
-      "PostgreSQL database connected successfully"
-    );
+    console.log("PostgreSQL database connected successfully");
 
-    app.listen(
-      PORT,
-      () => {
+    app.listen(PORT, () => {
 
-        console.log(
-          `House Expense API running on port ${PORT}`
-        );
+      console.log(
+        `House Expense API running on port ${PORT}`
+      );
 
-        console.log(
-          `http://localhost:${PORT}/api/health`
-        );
-
-      }
-    );
+    });
 
   } catch (error) {
 
-    console.error(
-      "Failed to start server:"
-    );
-
-    console.error(
-      error
-    );
+    console.error("Failed to start server:", error);
 
     process.exit(1);
 
